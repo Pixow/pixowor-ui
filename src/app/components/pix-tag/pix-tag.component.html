@@ -1,1 +1,11 @@
-<p>pix-tag works!</p>
+<div class='pix-tooltip' [ngClass]="{'dom-z-index': zIndex}">
+  <button (click)="coordinate($event)" class="tooltipButton" [ngClass]="{'dom-z-index': zIndex}"></button>
+  <div [ngClass]="{'tooltipLeft':left,'tooltipRight': right ,'dom-z-index':zIndex}" [hidden]="!isShow">
+    <p class="title">inspector</p>
+    <p>{{tooltipTextOne}}</p>
+    <p>{{tooltipTextTwo}}</p>
+    <div class="point-to"></div>
+    <button (click)="hidden()" class="hidden">GOT IT</button>
+  </div>
+</div>
+<div (click)="hidden()" [ngClass]="{'bg-hidden ': isShow,'shade-z-index':zIndex}" [hidden]="!isShow"></div>

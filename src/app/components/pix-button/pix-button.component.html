@@ -1,1 +1,5 @@
-<p>pix-button works!</p>
+<div class="button-tip">
+  <button class="button-style" (click)="onclick()" (mouseenter)="enterButton($event)"
+    (mouseleave)="leaveButton()">STORE</button>
+  <p [ngClass]="{'hint-top': top,'hint-bottom':bottom}" [hidden]="isShow">{{hint}}</p>
+</div>

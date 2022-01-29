@@ -1,0 +1,12 @@
+<div class="direction" [ngClass]="{'dom-z-index': zIndex}">
+  <div class="perspective" (click)="show()" [ngClass]="{'bgColor': label==temporary }">
+    <span>{{label}}</span>
+  </div>
+  <div class="isshow" [hidden]="!isShow" [ngClass]="{'dom-z-index': zIndex}">
+    <ul>
+      <li *ngFor="let item of perpectiveItem , let key=index " (click)="directions(item.label)"
+        [ngClass]="{'bgColor': item.label==temporary }">{{item.label}} </li>
+    </ul>
+  </div>
+</div>
+<div [hidden]="!isShow" (click)="hidden()" [ngClass]="{'shade': isShow,'shade-z-index':zIndex}"></div>
