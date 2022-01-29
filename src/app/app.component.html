@@ -1,17 +1,2 @@
-<app-pix-button [hint]='buttonHint' (clickButton)='onButton()'></app-pix-button>
-<!--  提示按钮  -->
-<app-pix-tag [tooltipTextOne]="tipText1" [tooltipTextTwo]="tipText2"></app-pix-tag>
-<!-- 功能提示 -->
-
-<app-pix-listbox [addData]='addData' [addTitle]='addTitle' (onChange)='getFeature($event)'> </app-pix-listbox>
-
-
-<app-pix-input [inputValue]='getInputValue' [label]='inputPlaceholder' (onChange)='changeValue($event)'>
-</app-pix-input>
-<!-- 输入框  status=1   -->
-<app-pix-dropdown [perpectiveItem]='perpectiveItem' (onChange)='getOnChangedValue($event)'>
-</app-pix-dropdown>
-<!-- 下拉菜单  status=1 -->
-
-<app-pix-form [coordinate]='showData' [label]="formHeader" (onChange)="logCoordinate($event)">
-</app-pix-form>
+<app-pix-button></app-pix-button>
+<app-pix-tag></app-pix-tag>
