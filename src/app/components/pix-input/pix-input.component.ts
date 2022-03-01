@@ -30,9 +30,9 @@ export class PixInputComponent implements OnInit {
     }
     mouseMove(e) {
         if (this.isAddMouse) {
-            let a = (e.movementX / 1000)
-            let b = Number(this.inputValue)
-            this.inputValue = Number((a + b).toFixed(3))
+            let movementValue = (e.movementX / 1000)
+            let transitionValue = Number(this.inputValue)
+            this.inputValue = Number((movementValue + transitionValue).toFixed(3))
         }
     }
     keyupValue(e) {

@@ -1,11 +1,18 @@
-<div class='pix-tooltip' [ngClass]="{'dom-z-index': zIndex}">
-  <button (click)="coordinate($event)" class="tooltipButton" [ngClass]="{'dom-z-index': zIndex}"></button>
-  <div [ngClass]="{'tooltipLeft':left,'tooltipRight': right ,'dom-z-index':zIndex}" [hidden]="!isShow">
-    <p class="title">inspector</p>
-    <p>{{tooltipTextOne}}</p>
-    <p>{{tooltipTextTwo}}</p>
-    <div class="point-to"></div>
-    <button (click)="hidden()" class="hidden">GOT IT</button>
+<div class="pix-tooltip" [ngClass]="{ 'dom-z-index': zIndex }" [hidden]="!hintButton" #getDom>
+  <button (click)="coordinate($event)" class="tooltipButton" [ngClass]="{ 'dom-z-index': zIndex }"></button>
+  <div class="tooltip" [ngClass]="{
+      tooltipLeft: left,
+      tooltipRight: right,
+      'dom-z-index': zIndex
+    }" [hidden]="!isShow" #getHiddenDom>
+    <p class="title">{{ title }}</p>
+    <p>{{ childState }}</p>
+    <p>{{ childUse }}</p>
+    <div class="point-to" [ngClass]="{
+        'point-to-right': isRhombusRight,
+        'point-to-left': isRhombusLeft
+      }"></div>
+    <button (click)="hidden()" class="hidden">{{ tag }}</button>
   </div>
 </div>
-<div (click)="hidden()" [ngClass]="{'bg-hidden ': isShow,'shade-z-index':zIndex}" [hidden]="!isShow"></div>
+<div (click)="hidden()" [ngClass]="{ 'bg-hidden ': isShow, 'shade-z-index': zIndex }" [hidden]="!isShow"></div>

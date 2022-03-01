@@ -1,16 +1,19 @@
 .input-box {
   background-color: #364346;
-  width: 450px;
-  padding: 10px 0px 10px 10px;
+  width: 380px;
+  padding: 5px 0px 5px 10px;
 
   p {
     display: flex;
 
-    // justify-content: space-evenly;
     span {
       width: 25%;
       color: rgb(185, 185, 185);
       font-size: 14px;
+      display: inline-flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 8px;
     }
 
     input {
@@ -25,21 +28,18 @@
     }
 
     ::-webkit-input-placeholder {
-      /* WebKit browsers */
       text-align: right;
       color: rgb(209, 206, 206);
       font-size: 12px;
     }
 
     ::-moz-placeholder {
-      /* Mozilla Firefox 19+ */
       text-align: right;
       color: rgb(209, 206, 206);
       font-size: 12px;
     }
 
     ::-ms-input-placeholder {
-      /* Internet Explorer 10+ */
       text-align: right;
       color: rgb(209, 206, 206);
       font-size: 12px;

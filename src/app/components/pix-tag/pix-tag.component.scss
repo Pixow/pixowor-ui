@@ -8,7 +8,6 @@
 .pix-tooltip {
   width: 32px;
   height: 32px;
-  border: 1px solid black;
   border-radius: 50%;
   background-color: black;
   position: relative;
@@ -19,35 +18,32 @@
     border: 1px solid black;
     border-radius: 50%;
     background-color: black;
+    position: absolute;
   }
 
-  .tooltipLeft {
+  .tooltip {
     width: 480px;
     height: 230px;
-    padding: 20px 30px 20px 20px;
-    border: 1px solid black;
+    padding: 20px 30px 20px 30px;
+    border: 1px solid #5C7172;
     background-color: white;
     position: absolute;
-    top: 0px;
-    left: 60px;
-    z-index: 666;
 
     .title {
       color: #FB6B09;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 15px;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 13px;
+      font-size: 14px;
       line-height: 20px;
       color: #75878A;
-      margin-bottom: 8px;
+      margin-bottom: 15px;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      display: -moz-box;
       display: box;
       -webkit-box-orient: vertical;
       -moz-box-orient: vertical;
@@ -71,12 +67,25 @@
       font-weight: 600;
     }
 
+    .hidden {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+    }
+
     .hidden:hover {
       background-color: #FB781F;
     }
+  }
+
+  .tooltipLeft {
+    position: absolute;
+    top: 0px;
+    left: 60px;
+    z-index: 666;
 
     .point-to {
-      background-color: rgb(66, 196, 72);
+      background-color: #5C7172;
       width: 30px;
       height: 30px;
       position: absolute;
@@ -87,58 +96,12 @@
   }
 
   .tooltipRight {
-    width: 480px;
-    height: 230px;
-    padding: 20px 30px 20px 20px;
-    border: 1px solid black;
-    background-color: white;
-    position: absolute;
     top: 0px;
     right: 60px;
     z-index: 66;
 
-
-    .title {
-      color: #FB6B09;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 13px;
-      line-height: 22px;
-      color: #75878A;
-      margin-bottom: 10px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      display: -moz-box;
-      display: box;
-      -webkit-box-orient: vertical;
-      -moz-box-orient: vertical;
-      box-orient: horizontal;
-      -webkit-line-clamp: 2;
-      -moz-line-clamp: 2;
-      line-clamp: 2;
-    }
-
-    button {
-      color: white;
-      background-color: #5C7172;
-      width: 100px;
-      height: 30px;
-      border: none;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .hidden:hover {
-      background-color: #FB781F;
-    }
-
     .point-to {
-      background-color: rgb(66, 196, 72);
+      background-color: #5C7172;
       width: 30px;
       height: 30px;
       position: absolute;
@@ -148,6 +111,29 @@
     }
   }
 
+
+}
+
+.point-to-right {
+  background-color: #5C7172;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: -15px;
+  top: 15px;
+  transform: rotateZ(45deg);
+  z-index: 66;
+}
+
+.point-to-left {
+  background-color: #5C7172;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: -15px;
+  top: 15px;
+  transform: rotateZ(45deg);
+  z-index: 66;
 }
 
 .bg-hidden {

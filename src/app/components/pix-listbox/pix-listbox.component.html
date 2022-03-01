@@ -1,10 +1,12 @@
-<div class="drop-down-list" [ngClass]="{'dom-z-index': zIndex}">
+<div class="drop-down-list" [ngClass]="{'dom-z-index': zIndex}" #getDom>
   <div class="title" (click)="addShow($event)">{{addTitle}}</div>
-  <div class="add-data" [ngClass]="{'dom-z-index': zIndex}" [hidden]="!isshow">
+  <div class="add-data" [ngClass]="{'dom-z-index': zIndex}" [hidden]="!isshow" #getHiddenDom>
     <ul>
-      <li *ngFor="let item of addData" (click)="addModules(item)"><img [src]="item.icon" alt=""> {{item.label}}
+      <li *ngFor="let item of addData" (click)="addModules(item)">
+        <i [class]="item.icon" style="font-size: 2px; margin-right: 5px;"></i>
+        {{item.label}}
       </li>
     </ul>
   </div>
 </div>
-<div (click)="hidden()" [ngClass]="{'hidden ': isshow,'shade-z-index':zIndex}"></div>
+<div (click)="hidden()" [ngClass]="{'mask-layer': isshow,'shade-z-index':zIndex}"></div>

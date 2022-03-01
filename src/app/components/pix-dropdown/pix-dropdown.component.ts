@@ -17,7 +17,6 @@ export class PixDropdownComponent implements OnInit {
     @Input() perpectiveItem: MenuItem[]
     @Input() inputValue: string | number;
     @Output() onChange: EventEmitter<any> = new EventEmitter()
-    // @Output() changeData: EventEmitter<any> = new EventEmitter()
 
     constructor() { }
 
@@ -35,7 +34,8 @@ export class PixDropdownComponent implements OnInit {
     hidden() {
         this.zIndex = false
         if (this.isTitle) {
-            this.label = this.temporary
+            this.label = this.temporary;
+            this.temporary = ''
         }
         this.isShow = false
         this.isTitle = false

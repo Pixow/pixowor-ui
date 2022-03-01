@@ -1,6 +1,4 @@
 .button-tip {
-  margin-left: 50px;
-  margin-top: 60px;
   width: 80px;
   height: 30px;
   position: relative;
@@ -10,21 +8,18 @@
     border: none;
     padding: 7px 10px;
     border-radius: 3px;
-    color: white;
+    color: #B1B8BA;
     height: 30px;
     width: 80px;
+    border: 1.5px solid #2D3A3B;
   }
 
   .button-style:hover {
     border: 1.5px solid #8d5b34;
+    color: white;
   }
 
-  button:hover {
-    border: 1.5px solid #8d5b34;
-  }
-
-  .hint-top {
-    // display: none;
+  .hint-text-style {
     width: 160px;
     height: 40px;
     background-color: #1F282B;
@@ -36,6 +31,9 @@
     overflow: hidden; //超出的文本隐藏
     text-overflow: ellipsis; //溢出用省略号显示
     white-space: nowrap; //溢出不换行
+  }
+
+  .hint-top {
     position: absolute;
     top: -60px;
     left: 50%;
@@ -43,22 +41,21 @@
   }
 
   .hint-bottom {
-    // display: none;
-    width: 160px;
-    height: 40px;
-    background-color: #1F282B;
-    font-size: 12px;
-    padding: 0px 10px;
-    text-align: center;
-    line-height: 40px;
-    color: white;
-    overflow: hidden; //超出的文本隐藏
-    text-overflow: ellipsis; //溢出用省略号显示
-    white-space: nowrap; //溢出不换行
     position: absolute;
     bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
+  }
 
+  .hint-left {
+    position: absolute;
+    right: 100px;
+    top: -8px;
+  }
+
+  .hint-right {
+    position: absolute;
+    right: -200px;
+    top: -8px;
   }
 }

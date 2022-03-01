@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { PixTagComponent } from './pix-tag.component';
 
 @NgModule({
-  declarations: [PixTagComponent],
-  imports: [CommonModule],
-  exports: [PixTagComponent],
+    declarations: [PixTagComponent],
+    imports: [CommonModule],
+    exports: [PixTagComponent],
 })
-export class PixTagModule {}
+export class PixTagModule { }

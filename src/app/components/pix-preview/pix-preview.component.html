@@ -1,0 +1,74 @@
+<div class="position">
+  <div [ngClass]="{'tree-hidden': _contentHidden}">
+    <div class="outer-box">
+      <div class="top-box">
+        <div>
+          <span (click)="contentHidden()">
+            <i class="pi pi-chevron-circle-down icon-size"></i>
+            ASSETS</span>
+          <p class="add icon-border">
+            <i class="pi pi-plus icon-size"></i>
+          </p>
+          <p class="delete icon-border" (click)="deleteFile($event)">
+            <!-- <div style="position: absolute;">
+            </div> -->
+            <i class="pi pi-trash icon-size"></i>
+          </p>
+          <p-confirmPopup styleClass="meaasge"></p-confirmPopup>
+          <p class="up-one-level icon-border">
+            <i class="pi pi-directions-alt icon-size"></i>
+          </p>
+        </div>
+        <div>
+          <p class="gird-view icon-border" (click)="girdView()">
+            <i class="pi pi-th-large icon-size"></i>
+          </p>
+          <p class="gire-view-small icon-border" (click)="girdViewSmall()">
+            <i class="pi pi-qrcode"></i>
+          </p>
+          <p class="gird-list icon-border" (click)="girdList()">
+            <i class="pi pi-bars"></i>
+          </p>
+        </div>
+        <div class="all">
+          <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" (onChange)="changValue($event)">
+          </p-dropdown>
+        </div>
+        <div class="search">
+          <input type="text" placeholder="SEARCH" (keyup)="fuzzySearch($event)" />
+        </div>
+      </div>
+      <div class="bottom-box">
+        <div class="files-list">
+          <!-- 严格模式下查找到的节点还会对他的子节点再进行查找 -->
+          <p-tree [value]="files" [filter]="true" filterMode="strict" selectionMode="single"
+            [(selection)]="selectedFile" [contextMenu]="cm" (click)="rightShow()" (onNodeExpand)="addNode($event)">
+          </p-tree>
+          <p-contextMenu #cm [model]="items"></p-contextMenu>
+          <p-toast></p-toast>
+        </div>
+        <div class="detail-file scroll-style">
+          <ul [ngClass]="{'gird-view':girdViewShow , 'gird-view-small':girdViewSmallShow, 'gird-list':girdListShow }">
+            <li *ngFor="let item of nodesShow" #menu >
+              <p-contextMenu [target]="menu" [global]="false" [model]="items" (onShow)="onShow(item)"></p-contextMenu>
+              <i [class]="item.collapsedIcon ? item.collapsedIcon : item.icon"></i>
+              <span>{{ item.label }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="show" (click)="contentShow()" [ngClass]="{'active-show': _contentShow}">
+    <p>
+      <span>
+        <i class="pi pi-chevron-circle-up icon-size"></i>
+        ASSETS</span>
+    </p>
+  </div>
+  <div class="clear"> </div>
+</div>
+
+
+
+<!-- 功能测试区域 -->

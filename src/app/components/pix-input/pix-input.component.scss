@@ -5,24 +5,20 @@
   height: 30px;
   margin-right: 15px;
   border: 1px solid #293539;
-  //   padding: 0px !important;
+  border-radius: 3px;
+  overflow: hidden;
 
   input {
     outline: none;
-    border: none;
     width: 100%;
     height: 100%;
     background-color: #293539;
     color: #828371;
-    border-radius: 3px;
+
     font-size: 12px;
-    border: 1px solid #293539;
+    border: none;
   }
 
-  input:focus {
-    color: white;
-    border: 1px solid #83593a;
-  }
 
   .placeholder {
     color: #90917f;
@@ -35,7 +31,6 @@
     width: 20px;
     height: 20px;
     background-color: #293539;
-    // font-weight: 600;
   }
 
   .input-icon {
@@ -49,7 +44,7 @@
 }
 
 .pcui-text-input:hover {
-  //   border: 1px solid #83593a;
+  border: 1px solid #83593a;
 
   input {
     color: white;

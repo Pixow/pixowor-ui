@@ -1,0 +1,31 @@
+.progress {
+  width: 200px;
+  height: 10px;
+  background-color: #202124;
+  border: none;
+  #bg-color{
+      background-color: #FB6600;
+       width: 120px;
+       height: 100%;
+       border-radius: 0px 7px 7px 0px;
+       background-image: url('/src/assets/compoennt/img/long.png')  repeat-x 0px 0px;
+       animation: bar 6s forwards;
+
+  }
+ @keyframes bar {
+     
+    0%{
+        width: 0%;
+    }
+    99%{
+        border-radius:  0px 7px 7px 0px;
+    }
+    100%{
+        width: 100%;
+        border-radius: 0;
+    }
+ }
+}
+.hidden{
+    display: none;
+}
