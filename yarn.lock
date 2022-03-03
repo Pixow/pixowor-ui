@@ -5287,9 +5287,9 @@ primeicons@^5.0.0:
   integrity sha512-heygWF0X5HFI1otlZE62pp6ye7sZ8om78J9au2BRkg8O7Y8AHTZ9qKMRzchZUHLe8zUAvdi6hZzzm9XxgwIExw==
 
 primeng@^13.1.0:
-  version "13.1.0"
-  resolved "https://registry.npmmirror.com/primeng/download/primeng-13.1.0.tgz#d520cc8ea618c558ba096773bd9cd63ad1407a34"
-  integrity sha512-Pw4vDFTiE9DIzPVnm/b9o4aadsuMXOtADfhQtJaMpC4WUP+PggmxnooUkbhNneXtELLRN95eJ1znK4tA433dYA==
+  version "13.2.1"
+  resolved "https://registry.npmmirror.com/primeng/-/primeng-13.2.1.tgz#d6e9542df624b982b9a9e873e8bffbb42dd2397a"
+  integrity sha512-Z+HvNlcH3AUYUIhNkAKWmkR+RUshoN1FYrN/zLhQhrOGIhMdisPXA2uILjGezEvte9X1rNOE8kOPpYvDWdKatA==
   dependencies:
     tslib "^2.3.0"
 

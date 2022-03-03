@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NodeService } from '../../services/node/node.service';
 import { MenuItem, TreeNode } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { ConfirmationService } from 'primeng/api';
 interface City {
   name: string;
 }
@@ -26,9 +24,6 @@ export class PixPreviewComponent implements OnInit {
   public _contentHidden: boolean = false;
   public _contentShow: boolean = false;
   constructor(
-    private nodeService: NodeService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
   ) {
     this.cities = [
       { name: 'All' },
@@ -61,7 +56,6 @@ export class PixPreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nodeService.getFiles().then((files) => (this.files = files.data));
     this.items = [
       {
         label: 'New Asset',
@@ -86,11 +80,7 @@ export class PixPreviewComponent implements OnInit {
     ];
   }
 
-  getTest() {
-    this.nodeService.getFiles().then((res) => {
-      console.log(res);
-    });
-  }
+
   contentHidden() {
     this._contentHidden = true;
     this._contentShow = true;
@@ -133,7 +123,7 @@ export class PixPreviewComponent implements OnInit {
 
   /* 展出菜单时调用的回调函数 */
     onShow(parame) {
-        this.selectedFile = parame; 
+        this.selectedFile = parame;
   }
 
   deleteFromTree(obj, parent) {

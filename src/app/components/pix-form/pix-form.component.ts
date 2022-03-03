@@ -14,8 +14,7 @@ export class PixFormComponent {
     @Input('coordinate') coordinate: CoordinateData[];
     @Output('onChange') onChange = new EventEmitter();
     constructor() { }
-    ngOnInit(): void {
-    }
+
     changeData(e: { name: string, value: number }) {
         this.coordinate.filter(data => {
             if (data.name == e.name) {
