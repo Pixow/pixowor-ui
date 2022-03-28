@@ -20,7 +20,28 @@
             {
               "label": "Resume.doc",
               "icon": "pi pi-file",
-              "data": "Resume Document"
+              "data": "Resume Document",
+              "children":[
+                {
+                  "label": "Invoices.txt",
+                  "icon": "pi pi-file",
+                  "data": "Invoices for this month",
+                  "children":[
+                    {
+                      "label": "Work",
+                      "data": "Work Folder",
+                      "expandedIcon": "pi pi-folder-open",
+                      "collapsedIcon": "pi pi-folder"
+                    }
+                  ]
+                },
+                {
+                  "label": "Invoices.txt",
+                  "icon": "pi pi-file",
+                  "data": "Invoices for this month"
+                }
+              ]
+               
             }
           ]
         },

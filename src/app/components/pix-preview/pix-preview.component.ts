@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NodeService } from '../../services/node/node.service';
 import { MenuItem, TreeNode } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { ConfirmationService } from 'primeng/api';
+import { NodeService } from 'src/app/services/node/node.service';
 interface City {
   name: string;
 }
@@ -25,11 +24,10 @@ export class PixPreviewComponent implements OnInit {
   public girdListShow: boolean = false;
   public _contentHidden: boolean = false;
   public _contentShow: boolean = false;
-  constructor(
-    private nodeService: NodeService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
-  ) {
+  public isMessage: boolean = false;
+
+  public deleteFileName: string = '';
+  constructor(private nodeService: NodeService) {
     this.cities = [
       { name: 'All' },
       { name: 'Animation' },
@@ -61,12 +59,54 @@ export class PixPreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this);
     this.nodeService.getFiles().then((files) => (this.files = files.data));
     this.items = [
       {
         label: 'New Asset',
         icon: 'pi pi-plus',
-        command: (event) => this.newFile(this.selectedFile),
+
+        items: [
+          {
+            label: 'Upload',
+            icon: 'pi pi-ellipsis-h',
+          },
+          {
+            label: 'Folder',
+            icon: 'pi pi-folder',
+            command: (event) => this.newFolder(event),
+          },
+          {
+            label: 'Css',
+            icon: 'pi pi-file-excel',
+            command: (event) => this.newFile(event),
+          },
+          {
+            label: 'HTML',
+            icon: 'pi pi-pencil',
+            command: (event) => this.newFile(event),
+          },
+          {
+            label: 'JSON',
+            icon: 'pi pi-reddit',
+            command: (event) => this.newFile(event),
+          },
+          {
+            label: 'Material',
+            icon: 'pi pi-vimeo',
+            command: (event) => this.newFile(event),
+          },
+          {
+            label: 'Script',
+            icon: 'pi pi-stop',
+            command: (event) => this.newFile(event),
+          },
+          {
+            label: 'Shader',
+            icon: 'pi pi-file-excel',
+            command: (event) => this.newFile(event),
+          },
+        ],
       },
       {
         label: 'Copy',
@@ -76,21 +116,16 @@ export class PixPreviewComponent implements OnInit {
       {
         label: 'Paste',
         icon: 'pi pi-calendar',
-        command: (event) => this.pasteFile(),
+        command: (event) => this.pasteFile(event),
       },
       {
         label: 'Delete',
         icon: 'pi pi-trash',
-        command: (event) => this.deleteFile(event),
+        command: (event) => this.deleteFile(),
       },
     ];
   }
-
-  getTest() {
-    this.nodeService.getFiles().then((res) => {
-      console.log(res);
-    });
-  }
+  // 内容的显示与隐藏
   contentHidden() {
     this._contentHidden = true;
     this._contentShow = true;
@@ -99,84 +134,23 @@ export class PixPreviewComponent implements OnInit {
     this._contentShow = false;
     this._contentHidden = false;
   }
-  newFile(file: TreeNode) {
-    // this.messageService.add({ severity: 'info', summary: 'Node Details', detail: file.label });
-    console.log(file);
-  }
-  copyFile(a) {
-    console.log(this.selectedFile, a);
-  }
-  pasteFile() {
-    console.log(this.selectedFile);
-  }
-  // 删除节点
-  deleteFile(event) {
-    // console.log(event.target);
-    // this.confirmationService.confirm({
-    //   target: event.target,
-    //   message: '你确定要删除吗？',
-    // icon: 'pi pi-exclamation-triangle',
-    //   accept: () => {
-    //     this.files.forEach((parent) => {
-    //       this.deleteFromTree(parent, this.files);
-    //     });
-    //     this.nodesShow = [];
-    //   },
-    //   reject: () => {
-    //     //reject action
-    //   },
-    // });
-       this.files.forEach((parent) => {
-          this.deleteFromTree(parent, this.files);
-        });
-  }
 
-  /* 展出菜单时调用的回调函数 */
-    onShow(parame) {
-        this.selectedFile = parame; 
-  }
-
-  deleteFromTree(obj, parent) {
-    if (obj == this.selectedFile) {
-      let index = parent.findIndex((o) => o.children == obj.children);
-      parent.splice(index, 1);
-    //   this.nodesShow = [];
-      return;
-    }
-    if (obj.children && obj.children.length > 0) {
-      obj.children.forEach((child) => {
-        this.deleteFromTree(child, obj.children);
-      });
-    }
-  }
-  rightShow() {
-    if (this.selectedFile != undefined) {
-      if (this.selectedFile.children != undefined) {
-        this.nodesShow = this.selectedFile.children;
-      }
-    }
-  }
-  addNode(e) {
-    console.log(e.node);
-  }
   //  Files are presented in different ways
-  girdView() {
-    this.girdViewShow = true;
+  girdView(parame: string) {
     this.girdViewSmallShow = false;
     this.girdListShow = false;
-  }
-  girdViewSmall() {
-    this.girdViewSmallShow = true;
     this.girdViewShow = false;
-    this.girdListShow = false;
+    if (parame == 'large') {
+      this.girdViewShow = true;
+    } else if (parame == 'small') {
+      this.girdViewSmallShow = true;
+    } else {
+      this.girdListShow = true;
+    }
   }
-  girdList() {
-    this.girdListShow = true;
-    this.girdViewShow = false;
-    this.girdViewSmallShow = false;
-  }
+
   //  条件筛选
-  changValue(e) {
+  conditionQuery(e) {
     console.log(e.value.name);
   }
   // 模糊查询事件
@@ -194,18 +168,106 @@ export class PixPreviewComponent implements OnInit {
     }
   }
 
-  //delete  node
-  //   onDrop(event) {
-  //     this.confirmationService.confirm({
-  //       target: event.target,
-  //       message: 'Are you sure that you want to proceed?',
-  //       icon: 'pi pi-exclamation-triangle',
-  //       accept: () => {
-  //         //confirm action
-  //       },
-  //       reject: () => {
-  //         //reject action
-  //       },
-  //     });
-  //   }
+  // 右键菜单功能
+  newFile(file: TreeNode) {
+    this.files.forEach((parent) => {
+      this.addFromTree(parent, this.files, file);
+    });
+  }
+  addFromTree(item, parent, file) {
+    if (item == this.selectedFile) {
+      parent.forEach((element) => {
+        if (element == this.selectedFile && element.children) {
+          if (file.children) {
+            element.children.push({
+              label: `New ${file.label}`,
+              expandedIcon: 'pi pi-folder-open',
+              collapsedIcon: 'pi pi-folder',
+              children: [],
+            });
+          } else {
+            element.children.push({
+              label: `New ${file.item.label}`,
+              icon: file.item.icon,
+            });
+          }
+        }
+      });
+      //   this.nodesShow = [];
+      return;
+    }
+    if (item.children && item.children.length > 0) {
+      item.children.forEach((child) => {
+        this.addFromTree(child, item.children, file);
+      });
+    }
+  }
+  newFolder(parame) {
+    let folder = {
+      label: parame.item.label,
+      expandedIcon: 'pi pi-folder-open',
+      collapsedIcon: 'pi pi-folder',
+      children: [],
+    };
+
+    this.files.forEach((parent) => {
+      this.addFromTree(parent, this.files, folder);
+    });
+  }
+  copyFile(a) {
+    console.log(this.selectedFile, a);
+  }
+  pasteFile(e) {
+    console.log(e);
+  }
+  deleteFile() {
+    if (this.selectedFile) {
+      this.deleteFileName = this.selectedFile.label;
+      this.isMessage = true;
+    }
+  }
+  deleteFromTree(obj, parent) {
+    if (obj == this.selectedFile) {
+      let index = parent.findIndex((o) => o.children == obj.children);
+      parent.splice(index, 1);
+      //   this.nodesShow = [];
+      return;
+    }
+    if (obj.children && obj.children.length > 0) {
+      obj.children.forEach((child) => {
+        this.deleteFromTree(child, obj.children);
+      });
+    }
+  }
+  onCancle() {
+    this.isMessage = false;
+  }
+  onDelete() {
+    this.files.forEach((parent) => {
+      this.deleteFromTree(parent, this.files);
+    });
+    this.isMessage = false;
+  }
+
+  // 文件展示区域  右键菜单展示时调用的函数
+  onShow(parame) {
+    this.selectedFile = parame;
+  }
+  rightShow() {
+    if (this.selectedFile != undefined) {
+      if (this.selectedFile.children != undefined) {
+        this.nodesShow = this.selectedFile.children;
+      }
+    }
+  }
+  // 双击文件夹显示子文件
+  doubleClick(item) {
+    if (item.children != undefined) {
+      this.nodesShow = item.children;
+    }
+  }
+  // 单击文件
+  onlyClick(item) {
+    this.selectedFile = item;
+  }
 }

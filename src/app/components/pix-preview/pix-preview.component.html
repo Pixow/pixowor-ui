@@ -9,9 +9,7 @@
           <p class="add icon-border">
             <i class="pi pi-plus icon-size"></i>
           </p>
-          <p class="delete icon-border" (click)="deleteFile($event)">
-            <!-- <div style="position: absolute;">
-            </div> -->
+          <p class="delete icon-border" (click)="deleteFile()">
             <i class="pi pi-trash icon-size"></i>
           </p>
           <p-confirmPopup styleClass="meaasge"></p-confirmPopup>
@@ -20,18 +18,19 @@
           </p>
         </div>
         <div>
-          <p class="gird-view icon-border" (click)="girdView()">
+          <p class="gird-view icon-border" (click)="girdView('large')">
             <i class="pi pi-th-large icon-size"></i>
           </p>
-          <p class="gire-view-small icon-border" (click)="girdViewSmall()">
+          <p class="gire-view-small icon-border" (click)="girdView('small')">
             <i class="pi pi-qrcode"></i>
           </p>
-          <p class="gird-list icon-border" (click)="girdList()">
+          <p class="gird-list icon-border" (click)="girdView('list')">
             <i class="pi pi-bars"></i>
           </p>
         </div>
         <div class="all">
-          <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" (onChange)="changValue($event)">
+          <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"
+            (onChange)="conditionQuery($event)">
           </p-dropdown>
         </div>
         <div class="search">
@@ -42,15 +41,17 @@
         <div class="files-list">
           <!-- 严格模式下查找到的节点还会对他的子节点再进行查找 -->
           <p-tree [value]="files" [filter]="true" filterMode="strict" selectionMode="single"
-            [(selection)]="selectedFile" [contextMenu]="cm" (click)="rightShow()" (onNodeExpand)="addNode($event)">
+            [(selection)]="selectedFile" [contextMenu]="cm" (click)="rightShow()">
           </p-tree>
           <p-contextMenu #cm [model]="items"></p-contextMenu>
           <p-toast></p-toast>
         </div>
         <div class="detail-file scroll-style">
           <ul [ngClass]="{'gird-view':girdViewShow , 'gird-view-small':girdViewSmallShow, 'gird-list':girdListShow }">
-            <li *ngFor="let item of nodesShow" #menu >
-              <p-contextMenu [target]="menu" [global]="false" [model]="items" (onShow)="onShow(item)"></p-contextMenu>
+            <li *ngFor="let item of nodesShow" #menu (dblclick)="doubleClick(item)" tabindex="0"
+              (click)="onlyClick(item)" class="demo">
+              <p-contextMenu [target]="menu" [global]="false" [model]="items" (onShow)="onShow(item)">
+              </p-contextMenu>
               <i [class]="item.collapsedIcon ? item.collapsedIcon : item.icon"></i>
               <span>{{ item.label }}</span>
             </li>
@@ -66,9 +67,17 @@
         ASSETS</span>
     </p>
   </div>
-  <div class="clear"> </div>
+  <div class="message" [ngClass]="{'delete-confirm': isMessage}">
+    <div>
+      <p>
+        Permanently delete folder ‘ {{deleteFileName}} ’？
+      </p>
+      <p>
+        <button (click)="onCancle()">CANCEl</button>
+        <button (click)="onDelete()">DELETE</button>
+      </p>
+    </div>
+  </div>
 </div>
-
-
 
 <!-- 功能测试区域 -->

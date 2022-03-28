@@ -2,7 +2,7 @@
   <input type="text" [(ngModel)]="inputValue" autocomplete="off" autofocus="autofocus" (keyup)="keyupValue($event)">
   <div class="placeholder">{{label}}</div>
   <div class="input-icon" (mousedown)="testShow()" (mouseup)="mouseUp()" (mousemove)="mouseMove($event)" #getDom>
-    <img src="assets/compoennt/icon/slider.png" [hidden]="!addValue">
-    <img src="assets/compoennt/icon/slider-activate.png" [hidden]="addValue">
+    <img src="assets/compoennt/icon/icon-adjust.svg" [hidden]="!addValue">
+    <img src="assets/compoennt/icon/icon-adjust-active.svg" [hidden]="addValue">
   </div>
 </div>

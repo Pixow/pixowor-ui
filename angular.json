@@ -16,6 +16,19 @@
         }
       }
     },
+    "pixowor-ui-library-prod": {
+      "root": "src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "src/app/components/ng-package.json",
+            "tsConfig": "src/app/components/tsconfig.lib.prod.json"
+          }
+        }
+      }
+    },
     "pixowor-ui": {
       "projectType": "application",
       "schematics": {
